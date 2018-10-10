@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Assignment 13.2</title>
+    <style>
+        #result{
+            line-height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id='result'></div>
+    <!-- Write a JavaScript code that does the following
+        • That fetches the user data from GitHub API for a given user -->
+
+    <!-- https://api.github.com/users/mnnaveenkumar -->
+    <script>
+        function render(DataObj){
+            var result = document.querySelector('#result');
+
+            for(var key in DataObj){
+                result.innerHTML += key +" : "+DataObj[key]+'<br>';
+            }
+        }
+
+        var LoadJSONData_fetch = function(){
+            var url = 'https://api.github.com/users/mnnaveenkumar';
+            fetch(url)
+            .then(function(response) {
+                return response.json()
+            })
+            .then(function(tasksJson) {
+                render(tasksJson);
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+        }    
+    LoadJSONData_fetch();
+    </script>
+</body>
+</html>
